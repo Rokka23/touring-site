@@ -1,0 +1,64 @@
+/* 共通 */
+body {
+  margin: 0;
+  background-color: #fff;
+  padding-bottom: 20px;
+}
+
+.main-inner {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+
+
+
+
+
+
+
+/* プラン画面 */
+.plan-btn-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #25619d;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: clamp(12px, 2.5vw, 16px); 
+}
+
+.back-btn:hover {
+  color: #154172;
+  text-decoration: underline;
+}
+
+.memo-card {
+  position: relative;
+  background-color: white;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: 5px solid white;
+  border-radius: 5px;
+}
+
+.memo-card.active {
+  border-color: #25619d;
+}
+
+@media (max-width: 768px) {
+  .back-btn{
+    width:100%;
+    margin-bottom:20px;
+}
+}
+

@@ -1,0 +1,111 @@
+/* 詳細画面 */
+
+.detailContent {
+  display: flex;
+  gap: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.04);
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.spotImg {
+  width: 580px;
+  height: 580px;
+  border-radius: 18px;
+}
+
+.detailDescription{
+  flex: 1 1 0;          /* ★追加：可変幅に */
+  max-width: 580px;     /* ★追加：最大幅は維持 */
+  width: 100%;           /* 580px固定をやめる */
+  height: 580px;
+  min-width: 0;
+}
+
+.titleTab {
+  color: #25619d;
+  background-color: #ddedff;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  width: 65px;
+  padding: 8px 14px;
+  letter-spacing: .08em;
+}
+
+.spotName {
+  align-items: center;
+  margin: 18px 0 28px;
+  font-size: clamp(22px, 4vw, 42px);
+  font-weight: 700;
+  color: #1f2937;
+  line-height: 1.3;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.spotTab {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: #114076;
+  font-size: clamp(13px, 3vw, 20px);
+  font-weight: bold;
+  padding-left: 14px;
+  border-left: 4px solid #2f7fcf;
+}
+
+.spotText,
+.detailDescription p {
+  line-height: 1.9;
+  margin-top: 10px;
+  color: #4b5563;
+  font-size: clamp(14px, 2.5vw, 16px);
+  flex-wrap: wrap;
+}
+
+.mapBtnArea {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.mapBtn {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: #25619d;
+  padding: 14px 26px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: .25s;
+}
+
+.mapBtn:hover {
+  background-color: #154172;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37,97,157,.3);
+}
+
+@media (max-width: 1024px) {
+  .detailContent {
+    flex-direction: column;
+  }
+
+  .spotImg {
+    width: 100%;
+    height: auto;
+  }
+
+  .mapBtnArea {
+    justify-content: start;
+  }
+}
