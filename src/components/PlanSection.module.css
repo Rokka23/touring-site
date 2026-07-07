@@ -1,0 +1,25 @@
+.planContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.planBox {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  width: 100%;
+}
+
+.planBox h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #25619d;
+}
+
+.planBox p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #333;
+}

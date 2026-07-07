@@ -52,7 +52,8 @@ export const PlanMemo = () => {
 
     // トーストメッセージ表示させる
     localStorage.setItem('toastMessage', 'プランを作成しました。');
-    navigate('/');
+
+    window.dispatchEvent(new Event('plansUpdated'));
   }
 
   const onDelete = (name) => {

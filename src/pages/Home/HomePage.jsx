@@ -21,12 +21,18 @@ export const HomePage = () => {
  const [searchName, setSearchName] = useState('');
  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
-//  初期表示のみ作成プラン読み込み
 useEffect(() => {
-  const saved = localStorage.getItem('createdPlans');
-  if (saved) {
-    setCreatedPlans(JSON.parse(saved));
-  }
+  const loadPlans = () => {
+    const saved = localStorage.getItem('createdPlans');
+    if (saved) {
+      setCreatedPlans(JSON.parse(saved));
+    }
+  };
+
+  loadPlans(); // 初回読み込み
+
+  window.addEventListener('plansUpdated', loadPlans);
+  return () => window.removeEventListener('plansUpdated', loadPlans);
 }, []);
 
  useEffect(() => {

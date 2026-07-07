@@ -1,9 +1,11 @@
+import styles from "./PlanSection.module.css";
+
 export const PlanSection = ({ plans }) => {
 
   return (
-    <div className="plan-content">
+    <div className={styles.planContent}>
       {plans.map((plan, planIndex) => (
-        <div key={planIndex} className="plan-box">
+        <div key={planIndex} className={styles.planBox}>
           <h3>プラン {planIndex + 1}</h3>
           {plan.map((spot, spotIndex) => (
             <p key={spot.name}>
