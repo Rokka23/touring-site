@@ -5,7 +5,7 @@ import { Header } from "../../components/Header/Header";
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel'
 import { MapArea } from '../../components/MapArea/MapArea'
 import { PlanSection } from '../../components/PlanSection'
-import { PlanMemo } from "../../components/PlanMemo/PlanMemo";
+import { SpotList } from "../../components/SpotList/SpotList";
 import { RecommendSection } from "../../components/Recommend/RecommendSection";
 
 import styles from "./HomePage.module.css";
@@ -147,7 +147,7 @@ if(result){
               />
             <div className={styles.planMemo}>
               <h2 className={styles.planMemoTitle}>プランメモ</h2>
-              <PlanMemo />
+              <SpotList />
             </div>
           </div>
 

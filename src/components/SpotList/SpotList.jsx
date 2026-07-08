@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 
-import styles from "./PlanMemo.module.css";
+import styles from "./SpotList.module.css";
 
-export const PlanMemo = () => {
+export const SpotList = () => {
 
   const navigate = useNavigate();
 
