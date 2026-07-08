@@ -14,24 +14,6 @@
 }
 
 /* ホーム画面 プランメモ */
-.planMemo {
-  width: 450px;
-  align-self: flex-start;
-  background-color: white;
-  border: 1px solid #cad1d7;
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(21, 65, 114, 0.08);
-}
-
-.planMemoTitle {
-  color: #154172;
-  font-size: 22px;
-  margin-top: 0;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  margin-bottom: 0;
-}
 
 .toast {
   position: fixed;

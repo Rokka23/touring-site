@@ -145,12 +145,8 @@ if(result){
               onAddToMemo={handleAddToMemo}
               onAddToFav={handleAddToFav}
               />
-            <div className={styles.planMemo}>
-              <h2 className={styles.planMemoTitle}>プランメモ</h2>
               <SpotList />
             </div>
-          </div>
-
       <div className={styles.contentBelow}>
         <div className={styles.plan}>
           <div className={styles.planNav}>
@@ -169,7 +165,7 @@ if(result){
       </div>
       </div>
       </div>
-    </div>
+      </div>
     </main>
   </>
   )

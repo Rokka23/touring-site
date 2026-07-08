@@ -1,41 +1,19 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { IoTrashOutline } from "react-icons/io5";
+import { Spots } from "../../data/spots";
+import { usePlanSelection } from "../../contexts/UsePlanSelection";
+import { CiCirclePlus } from "react-icons/ci";
+import { FaMinusSquare } from "react-icons/fa";
 
 import styles from "./SpotList.module.css";
 
 export const SpotList = () => {
 
-  const navigate = useNavigate();
+  const { selectedSpots, addSpot, removeSpot, clearSpot } = usePlanSelection();
 
-  const [memoSpots, setMemoSpots] = useState([]);
-  const [selectedCards, setSelectedCards] = useState([]);
-
-  useEffect(() => {
-    const loadPlan = () => {
-      const saved = localStorage.getItem('Plan');
-      if (saved) {
-        setMemoSpots(JSON.parse(saved));
-      }
-    };
-  
-    loadPlan(); // 初回読み込み
-  
-    window.addEventListener('planUpdated', loadPlan);
-    return () => window.removeEventListener('planUpdated', loadPlan);
-  }, []);
-
-  const handleCardClick = (spot) => {
-    if(selectedCards.find(s => s.name == spot.name)) {
-      setSelectedCards(selectedCards.filter(s => s.name !== spot.name));
-    } else {
-      setSelectedCards([...selectedCards, spot])
-    }
-  }
+  const selectedCount = selectedSpots.length;
 
   // バリデーションと作成プラン保存
   const handleCreatePlan = () => {
-    const count = selectedCards.length;
+    const count = selectedSpots.length;
 
     if(count <= 1) {
       alert('スポットを2箇所以上選択してください。');
@@ -47,7 +25,7 @@ export const SpotList = () => {
 
     // 新しいプランを追加する
     const existing = JSON.parse(localStorage.getItem('createdPlans')) || [];
-    existing.push(selectedCards);
+    existing.push(selectedSpots);
     localStorage.setItem('createdPlans', JSON.stringify(existing));
 
     // トーストメッセージ表示させる
@@ -56,55 +34,49 @@ export const SpotList = () => {
     window.dispatchEvent(new Event('plansUpdated'));
   }
 
-  const onDelete = (name) => {
-    // setMemoSpots(memoSpots.filter((s) => s.name != name))
-    setMemoSpots(prev => {
-      const updated = prev.filter(s => s.name !== name);
-      localStorage.setItem('Plan', JSON.stringify(updated));
-      return updated;
-    });
-  }
-
   return(
-    <>
-    <div className={styles.planMemoContainer}>
-    {memoSpots.map(spot => {
-       const selectedIndex = selectedCards.findIndex(s => s.name === spot.name);
-       return(
-      <div
-        key={spot.name}
-        className={
-          selectedCards.find(s => s.name === spot.name)
-            ? `${styles.planMemoCard} ${styles.active}`
-            : styles.planMemoCard
-        }
-        onClick={() => handleCardClick(spot)}
-      >
-        <h3 className={styles.memoSpotName}>{spot.name}</h3>
-        <div className={styles.memoSpotDetail}>
-          <p className={styles.spotTag}>{spot.type}</p>
-          <p className={styles.spotTag}>{spot.prefecture}</p>
-        </div>
-        <button 
-          className={styles.deleteBtn} 
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(spot.name);
-          }}
-        >
-          <IoTrashOutline />
+    <div className={styles.planMemo}>
+      <div className={styles.SpotListTop}>
+        <h2 className={styles.planMemoTitle}>スポット一覧</h2>
+        <button className={styles.selectedReset} onClick={() => clearSpot()}>
+          リセット
         </button>
-        {selectedIndex !== -1 && (
-          <span className={styles.planNum}>{selectedIndex + 1}</span>
-        )}
       </div>
-       )
-    })}
+      <p className={styles.spotCount}>選択中:{selectedCount}件</p>
+      <div className={styles.planMemoContainer}>
+      {Spots.map(spot => {
+        // 選択されているか確認
+        const isSelected = selectedSpots.some(item => item.name == spot.name)
+        return(
+        <div
+          key={spot.name}
+          className={styles.planMemoCard} 
+        >
+          <div>
+            <h3 className={styles.memoSpotName}>{spot.name}</h3>
+            <div className={styles.memoSpotDetail}>
+              <p className={styles.spotTag}>{spot.type}</p>
+              <p className={styles.spotTag}>{spot.prefecture}</p>
+            </div>
+          </div>
+
+          {isSelected ? (
+            <button onClick={() => removeSpot(spot.name)} className={styles.minusBtn}>
+              <FaMinusSquare />
+            </button>
+          ) : (
+            <button onClick={() => addSpot(spot)} className={styles.plusBtn}>
+              <CiCirclePlus />
+            </button>
+          )}
+        </div>
+        )
+      })}
+      </div>
+      <div className={styles.filterActions}>
+        <button className={styles.createPlanBtn} onClick={handleCreatePlan}>プランを作成する</button>
+      </div>
+      <p className={styles.memoInfo}>※スポットをクリックすると選択できます。</p>
     </div>
-    <div className={styles.filterActions}>
-      <button className={styles.createPlanBtn} onClick={handleCreatePlan}>プランを保存する</button>
-    </div>
-    <p className={styles.memoInfo}>※スポットをクリックすると選択できます。</p>
-</>
   )
 }
