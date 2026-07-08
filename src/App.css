@@ -3,6 +3,7 @@ body {
   margin: 0;
   background-color: #fff;
   padding-bottom: 20px;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 .main-inner {
@@ -10,13 +11,6 @@ body {
   margin: 30px auto;
   padding: 0 20px;
 }
-
-
-
-
-
-
-
 
 /* プラン画面 */
 .plan-btn-box {
