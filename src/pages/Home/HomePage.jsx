@@ -66,23 +66,6 @@ useEffect(() => {
  const onChange = (e) => {
   setSelectedArea(e.target.value)}
 
- const handleAddToMemo = (spot) => {
-  const saved = localStorage.getItem('Plan');
-  const current = saved ? JSON.parse(saved) : [];
-
-  // 重複チェック
-  const isDuplicate = current.find(item => item.name === spot.name);
-  if (isDuplicate) {
-    alert('すでに追加済みです');
-    return;
-  }
-  current.push(spot);
-  localStorage.setItem('Plan', JSON.stringify(current));
-
-  // カスタムイベントを発火して他コンポーネントに通知
-  window.dispatchEvent(new Event('planUpdated'));
-}
-
 const handleAddToFav = (spot) => {
   const favSaved = localStorage.getItem('Favorites');
   const currentFav = favSaved ? JSON.parse(favSaved) : [];
@@ -92,6 +75,7 @@ const handleAddToFav = (spot) => {
     alert('すでにお気に入り済みです');
     return;
   }
+  alert('お気に入りに追加しました。')
   currentFav.push(spot);
   localStorage.setItem('Favorites', JSON.stringify(currentFav));
 
@@ -142,7 +126,6 @@ if(result){
           <div className={styles.mainTop}>
               <MapArea 
               filteredSpots={filteredSpots}
-              onAddToMemo={handleAddToMemo}
               onAddToFav={handleAddToFav}
               />
               <SpotList />
