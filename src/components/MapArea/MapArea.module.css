@@ -17,9 +17,18 @@
 }
 
 .iwActions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: block;
+}
+
+.iwActions > * {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 6px;
+}
+
+.iwActions > *:last-child {
+  margin-bottom: 0;
 }
 
 .iwBtn {
