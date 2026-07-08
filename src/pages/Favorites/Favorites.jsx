@@ -58,7 +58,7 @@ export const Favorites = () => {
               spaceBetween={16}
               slidesPerView={4}
               breakpoints={{
-                0: { slidesPerView: 0},
+                0: { slidesPerView: 1},
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 4 },
               }}
