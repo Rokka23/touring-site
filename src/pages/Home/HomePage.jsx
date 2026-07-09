@@ -66,20 +66,27 @@ useEffect(() => {
  const onChange = (e) => {
   setSelectedArea(e.target.value)}
 
-const handleAddToFav = (spot) => {
-  const favSaved = localStorage.getItem('Favorites');
-  const currentFav = favSaved ? JSON.parse(favSaved) : [];
+  // お気に入り済みスポット
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('Favorites')
+    return saved ? JSON.parse(saved) : [];
+  })
 
-  const isFavDuplicate = currentFav.find(item => item.name === spot.name);
+const handleAddToFav = (spot) => {
+  // 重複確認
+  const isFavDuplicate = favorites.find(item => item.name === spot.name);
   if (isFavDuplicate) {
     alert('すでにお気に入り済みです');
     return;
   }
-  alert('お気に入りに追加しました。')
-  currentFav.push(spot);
-  localStorage.setItem('Favorites', JSON.stringify(currentFav));
 
-  // カスタムイベントを発火して他コンポーネントに通知
+  // 重複なければお気に入りに追加
+  const newFavorites = [...favorites, spot];
+  setFavorites(newFavorites);
+
+  localStorage.setItem('Favorites', JSON.stringify(newFavorites));
+
+  // カスタムイベントを発火してFavoritesコンポーネントに通知
   window.dispatchEvent(new Event('favoritesUpdated'));
 }
 
