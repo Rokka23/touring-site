@@ -7,6 +7,7 @@ import { MapArea } from '../../components/MapArea/MapArea'
 import { PlanSection } from '../../components/PlanSection'
 import { SpotList } from "../../components/SpotList/SpotList";
 import { RecommendSection } from "../../components/Recommend/RecommendSection";
+import { BottomTab } from '../../components/BottomTab/BottomTab';
 
 import styles from "./HomePage.module.css";
 
@@ -157,6 +158,7 @@ if(result){
       </div>
       </div>
     </main>
+      <BottomTab />
   </>
   )
 }

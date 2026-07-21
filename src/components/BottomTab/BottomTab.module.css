@@ -1,0 +1,54 @@
+.bottomTabContainer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 0.5px solid #eee;
+  text-align: center;
+  z-index: 100;
+}
+
+.bottomTabBox {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  margin: 0;
+  padding: 0;
+  padding-top: 10px;
+}
+
+.bottomTabItem {
+  flex: 1;
+  cursor: pointer;
+}
+
+.bottomTabIcon svg {
+  color: white;
+  filter: drop-shadow(1px 0 0 #185FA5) drop-shadow(-1px 0 0 #185FA5)
+          drop-shadow(0 1px 0 #185FA5) drop-shadow(0 -1px 0 #185FA5);
+  transition: color 0.15s ease, filter 0.15s ease;
+}
+
+.active svg {
+  color:#185FA5;
+}
+
+.bottomTabItem:hover .bottomTabIcon svg {
+  color: #185FA5;
+  filter: none;
+}
+
+.bottomTabLabel {
+  margin-top: 0;
+  font-size: 12px;
+  color: #185FA5;
+}
+
+@media (max-width: 768px) {
+  .bottomTabContainer {
+    display: block;
+  }
+}

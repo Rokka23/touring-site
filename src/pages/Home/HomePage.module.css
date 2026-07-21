@@ -89,6 +89,10 @@
   padding: 10px;
 }
 
+.bottomTab {
+  display: none;
+}
+
 
 @media (max-width: 1024px) {
   .mainBox {
