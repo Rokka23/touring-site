@@ -53,6 +53,9 @@
 .planNav {
   display: flex;
   color: #114076;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
 }
 
 .planTitle {
@@ -61,6 +64,18 @@
   margin-bottom: 0;
   color: #154172;
   font-size: 22px;
+}
+
+.planAllBtn {
+  font-weight: bold;
+  font-size: clamp(12px, 2.5vw, 14px);
+  padding: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease, color 0.3s ease;
+}
+
+.planAllBtn:hover {
+  color: #568bc6; 
 }
 
 .planContent {
@@ -80,6 +95,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(21, 65, 114, 0.08);
   padding: 10px;
+  margin-bottom: 60px;
 }
 
 .recommendTitle {

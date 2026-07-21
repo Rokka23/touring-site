@@ -142,6 +142,7 @@ if(result){
         <div className={styles.plan}>
           <div className={styles.planNav}>
             <h2 className={styles.planTitle}>作成したプラン</h2>
+            <nav className={styles.planAllBtn}>すべて見る ＞</nav>
           </div>
           <div className={styles.planContent}>
             <PlanSection
