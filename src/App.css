@@ -51,8 +51,7 @@ body {
 
 @media (max-width: 768px) {
   .back-btn{
-    width:100%;
-    margin-bottom:20px;
+    display: none;
 }
 }
 

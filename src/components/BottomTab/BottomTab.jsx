@@ -9,9 +9,9 @@ export const BottomTab = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const tabs = [
-    {path: '/', label: 'ホーム', icon: <IoHomeSharp size={30} />},
-    {path: '/favorites', label: 'お気に入り', icon: <FaHeart size={30} />},
-    {path: '/plan', label: 'プラン', icon: <FaMap size={30} />}
+    {path: '/', label: 'ホーム', icon: <IoHomeSharp size={18} />},
+    {path: '/favorites', label: 'お気に入り', icon: <FaHeart size={18} />},
+    {path: '/plan', label: 'プラン', icon: <FaMap size={18} />}
   ]
   
   return (

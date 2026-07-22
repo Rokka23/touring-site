@@ -67,6 +67,7 @@
 }
 
 .planAllBtn {
+  display: none;
   font-weight: bold;
   font-size: clamp(12px, 2.5vw, 14px);
   padding: 10px;
@@ -171,5 +172,18 @@
   .plan,
   .recommend {
     flex: none;
+  }
+
+  .planAllBtn {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .planTitle,
+  .recommendTitle {
+    font-size: 16px;
   }
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Spots } from '../../data/spots'
 import { filterSpots } from '../../utils/filterSpots'
 import { Header } from "../../components/Header/Header";
@@ -8,6 +9,7 @@ import { PlanSection } from '../../components/PlanSection'
 import { SpotList } from "../../components/SpotList/SpotList";
 import { RecommendSection } from "../../components/Recommend/RecommendSection";
 import { BottomTab } from '../../components/BottomTab/BottomTab';
+import { useCreatedPlans } from '../../contexts/CreatedPlans/useCreatedPlans';
 
 import styles from "./HomePage.module.css";
 
@@ -18,23 +20,10 @@ export const HomePage = () => {
  const [selectedSeasons, setSelectedSeasons] = useState([]);
  const [selectedLevels, setSelectedLevels] = useState([]);
  const [filteredSpots, setFilteredSpots] = useState(Spots);
- const [createdPlans, setCreatedPlans] = useState([]);
  const [searchName, setSearchName] = useState('');
  const [isFilterOpen, setIsFilterOpen] = useState(false)
-
-useEffect(() => {
-  const loadPlans = () => {
-    const saved = localStorage.getItem('createdPlans');
-    if (saved) {
-      setCreatedPlans(JSON.parse(saved));
-    }
-  };
-
-  loadPlans(); // 初回読み込み
-
-  window.addEventListener('plansUpdated', loadPlans);
-  return () => window.removeEventListener('plansUpdated', loadPlans);
-}, []);
+ const { createdPlans } = useCreatedPlans();
+ const navigate = useNavigate();
 
  useEffect(() => {
   const message = localStorage.getItem('toastMessage');
@@ -136,13 +125,15 @@ if(result){
               filteredSpots={filteredSpots}
               onAddToFav={handleAddToFav}
               />
-              <SpotList />
+              <div className={styles.hidden}>
+                <SpotList />
+              </div>
             </div>
       <div className={styles.contentBelow}>
         <div className={styles.plan}>
           <div className={styles.planNav}>
             <h2 className={styles.planTitle}>作成したプラン</h2>
-            <nav className={styles.planAllBtn}>すべて見る ＞</nav>
+            <nav className={styles.planAllBtn} onClick={() => navigate('/plan')}>すべて見る ＞</nav>
           </div>
           <div className={styles.planContent}>
             <PlanSection

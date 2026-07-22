@@ -1,5 +1,6 @@
 import { Spots } from "../../data/spots";
-import { usePlanSelection } from "../../contexts/UsePlanSelection";
+import { useCreatedPlans } from "../../contexts/CreatedPlans/useCreatedPlans";
+import { usePlanSelection } from "../../contexts/PlanSelection/usePlanSelection";
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaMinusSquare } from "react-icons/fa";
@@ -11,10 +12,8 @@ export const SpotList = () => {
 const [isFormOpen, setIsFormOpen] = useState(false);
 const [planName, setPlanName] = useState('');
 const [errormessage, setErrormessage] = useState('')
-
-
+const { addPlan } = useCreatedPlans();
 const { selectedSpots, addSpot, removeSpot, clearSpot } = usePlanSelection();
-
 const selectedCount = selectedSpots.length;
 
   // プラン作成ボタン押下
@@ -48,13 +47,8 @@ const selectedCount = selectedSpots.length;
       createdAt: new Date().toISOString(),
     }
 
-    // 新しいプランをlocalsStorageに追加する
-    const existing = JSON.parse(localStorage.getItem('createdPlans')) || [];
-    existing.push(newPlan);
-    localStorage.setItem('createdPlans', JSON.stringify(existing));
-
-    // トーストメッセージ表示させる
-    alert('プランを作成しました。');
+    // 新しいプランを追加
+    addPlan(newPlan)
 
     window.dispatchEvent(new Event('plansUpdated'));
 
@@ -118,8 +112,8 @@ const selectedCount = selectedSpots.length;
       </div>
       <div className={styles.filterActions}>
         <button className={styles.createPlanBtn} onClick={handleCreatePlan}>プランを作成する</button>
+        <p className={styles.memoInfo}>※プラスボタンをクリックすると選択できます。</p>
       </div>
-      <p className={styles.memoInfo}>※プラスボタンをクリックすると選択できます。</p>
 
       {isFormOpen && (
         <div className={styles.modalOverlay} >

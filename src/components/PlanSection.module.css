@@ -37,3 +37,13 @@
   font-weight: 500;
   margin-right: 4px;
 }
+
+@media (max-width: 768px) {
+  .planBox h3 {
+    font-size: 14px;
+  }
+
+  .spotNumberItem  {
+    font-size: 12px;
+  }
+}

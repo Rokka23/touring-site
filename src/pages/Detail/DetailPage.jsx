@@ -1,5 +1,6 @@
 import { Header } from "../../components/Header/Header"
 import { Spots } from "../..//data/spots";
+import { BottomTab } from "../../components/BottomTab/BottomTab";
 import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./DetailPage.module.css";
@@ -49,6 +50,7 @@ export const DetailPage = () => {
           </div>
         </div>
       </main>
+      <BottomTab />
     </>
   )
 }

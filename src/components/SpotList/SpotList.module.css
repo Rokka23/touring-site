@@ -155,6 +155,8 @@
   border-radius: 8px;
   padding: 10px 30px;
   margin-top: 20px;
+  margin-left: clamp(70px, 2.5vw, 100px);
+  margin-right: clamp(70px, 2.5vw, 100px);
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(44, 111, 176, 0.3);
   transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
@@ -180,7 +182,9 @@
 
 .filterActions {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .modalOverlay {
@@ -272,17 +276,75 @@
 }
 
 @media (max-width: 1024px) {
+  .planMemo {
+    width: 300px;
+  }
+
   .planMemoContainer {
     width: 100%;
+  }
+
+  .planMemoTitle {
+    font-size: 18px;
+  }
+
+  .spotCount {
+    margin: 10px;
   }
 
   .memoInfo {
     width: 250px;
   }
+
+  .createPlanBtn {
+    font-size: 14px;
+    width: 70%;
+  }
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .planMemo {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    border: none;
+    padding-bottom: 40px;
+  }
+
+  .planMemoTitle {
     display: none;
+  }
+
+  .SpotListTop {
+    justify-content: flex-end;
+    margin-right: 8px;
+  }
+
+  .spotCount {
+    text-align: left;
+    margin-left: 30px;
+    background-color: #ddeeff;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .planMemoContainer {
+    width: 100%;
+    height: auto;
+  }
+
+  .memoSpotName {
+    font-size: 14px;
+  }
+
+  .modalOverlay {
+    width: 100%;
+  }
+
+  .modalContent {
+    width: 100%;
   }
 }
