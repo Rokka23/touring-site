@@ -101,26 +101,26 @@ if(result){
         isFilterOpen={isFilterOpen}
         onToggleFilter={() => setIsFilterOpen((prev) => !prev)}
       />
-    <main>
-    <div className="main-inner">
-      <div className={styles.mainBox}>
-        <div id="toast" className={styles.toast}></div>
-          <FilterPanel
-            selectedArea={selectedArea}
-            selectedTypes={selectedTypes}
-            selectedSeasons={selectedSeasons}
-            selectedLevels={selectedLevels}
-            setSelectedTypes={setSelectedTypes}
-            setSelectedSeasons={setSelectedSeasons}
-            setSelectedLevels={setSelectedLevels}
-            onChange={onChange}
-            onSearch={onSearch}
-            onReset={onReset}
-            isOpen={isFilterOpen}
-            onClose={() => setIsFilterOpen(false)}
-            />
-        <div className={styles.mainContent}>
-          <div className={styles.mainTop}>
+      <main>
+        <div className="main-inner">
+          <div className={styles.mainBox}>
+            <div id="toast" className={styles.toast}></div>
+              <div className={styles.mainTop}>
+              <FilterPanel
+                selectedArea={selectedArea}
+                selectedTypes={selectedTypes}
+                selectedSeasons={selectedSeasons}
+                selectedLevels={selectedLevels}
+                setSelectedTypes={setSelectedTypes}
+                setSelectedSeasons={setSelectedSeasons}
+                setSelectedLevels={setSelectedLevels}
+                onChange={onChange}
+                onSearch={onSearch}
+                onReset={onReset}
+                isOpen={isFilterOpen}
+                onClose={() => setIsFilterOpen(false)}
+                />
+        
               <MapArea 
               filteredSpots={filteredSpots}
               onAddToFav={handleAddToFav}
@@ -128,29 +128,28 @@ if(result){
               <div className={styles.hidden}>
                 <SpotList />
               </div>
-            </div>
-      <div className={styles.contentBelow}>
-        <div className={styles.plan}>
-          <div className={styles.planNav}>
-            <h2 className={styles.planTitle}>作成したプラン</h2>
-            <nav className={styles.planAllBtn} onClick={() => navigate('/plan')}>すべて見る ＞</nav>
-          </div>
-          <div className={styles.planContent}>
-            <PlanSection
-              plans={createdPlans}
-            />
+              </div>
+              <div className={styles.contentBelow}>
+                <div className={styles.plan}>
+                  <div className={styles.planNav}>
+                    <h2 className={styles.planTitle}>作成したプラン</h2>
+                    <nav className={styles.planAllBtn} onClick={() => navigate('/plan')}>すべて見る ＞</nav>
+                  </div>
+                  <div className={styles.planContent}>
+                    <PlanSection
+                      plans={createdPlans}
+                    />
+                  </div>
+                </div>
+                <div className={styles.recommend}>
+                  <h2 className={styles.recommendTitle}>おすすめスポット</h2>
+                  <RecommendSection />
+                </div>
+              </div>
           </div>
         </div>
-        <div className={styles.recommend}>
-          <h2 className={styles.recommendTitle}>おすすめスポット</h2>
-          <RecommendSection />
-        </div>
-      </div>
-      </div>
-      </div>
-      </div>
-    </main>
+      </main>
       <BottomTab />
-  </>
+    </>
   )
 }
