@@ -6,12 +6,14 @@ export const PlanSection = ({ plans }) => {
     <div className={styles.planContent}>
       {plans.map((plan, planIndex) => (
         <div key={planIndex} className={styles.planBox}>
-          <h3>プラン {planIndex + 1}</h3>
-          {plan.map((spot, spotIndex) => (
-            <p key={spot.name}>
-              {spotIndex + 1}. {spot.name}
-            </p>
-          ))}
+          <h3>{plan.name}</h3>
+          <ol className={styles.spotNumberList}>
+            {plan.spots.map((spot, spotIndex) => (
+              <li key={spot.name ?? spotIndex} className={styles.spotNumberItem}>
+                {spot.name}
+              </li>
+            ))}
+          </ol>
         </div>
       ))}
     </div>

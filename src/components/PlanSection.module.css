@@ -14,12 +14,36 @@
 
 .planBox h3 {
   margin: 0 0 10px;
-  font-size: 16px;
+  font-size: 18px;
   color: #25619d;
 }
 
-.planBox p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #333;
+.spotNumberList {
+  list-style: none;   /* デフォルトの数字を消して、自前の連番に置き換える */
+  padding: 0;
+  margin: 8px 0 0;
+  counter-reset: spot-counter; /* 連番のカウンターを初期化 */
+}
+
+.spotNumberItem {
+  counter-increment: spot-counter; /* 1件ごとにカウンターを+1 */
+  font-size: 15px;
+  color: #374151;
+  padding: 2px 0;
+}
+
+.spotNumberItem::before {
+  content: counter(spot-counter) ". "; /* "1. " "2. " のように表示 */
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .planBox h3 {
+    font-size: 14px;
+  }
+
+  .spotNumberItem  {
+    font-size: 12px;
+  }
 }

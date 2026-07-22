@@ -10,19 +10,20 @@ export const Header = ({ searchName, setSearchName, onSearchByName, isFilterOpen
   const location = useLocation();
   const isHome = location.pathname === "/";
   const isFavorites = location.pathname === '/favorites' 
+  const isPlan = location.pathname === '/plan'
 
   const navigate = useNavigate();
 
   return (
     <header>
-  <div className={styles.headerInner}>
+  <div className={`${styles.headerInner} ${isPlan || isFavorites  ? styles.planHeader : ''} `}>
     <div className={styles.logo}>
       <h1 className={styles.title}>ツーリングスポットナビ</h1>
       <div className={styles.titleIcon}>
         <TbMotorbikeFilled />
       </div>
     </div>
-    <div className={`${styles.searchArea} ${isFavorites ? styles.headerFavBtnHide : ""}`}>
+    <div className={`${styles.searchArea} ${isFavorites ? styles.headerFavBtnHide : ""} ${isPlan ? styles.headerFavBtnHide : ""}`}>
       <input
         type="search"
         id="search"

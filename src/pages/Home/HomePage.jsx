@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Spots } from '../../data/spots'
 import { filterSpots } from '../../utils/filterSpots'
 import { Header } from "../../components/Header/Header";
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel'
 import { MapArea } from '../../components/MapArea/MapArea'
 import { PlanSection } from '../../components/PlanSection'
-import { PlanMemo } from "../../components/PlanMemo/PlanMemo";
+import { SpotList } from "../../components/SpotList/SpotList";
 import { RecommendSection } from "../../components/Recommend/RecommendSection";
+import { BottomTab } from '../../components/BottomTab/BottomTab';
+import { useCreatedPlans } from '../../contexts/CreatedPlans/useCreatedPlans';
 
 import styles from "./HomePage.module.css";
 
@@ -17,23 +20,10 @@ export const HomePage = () => {
  const [selectedSeasons, setSelectedSeasons] = useState([]);
  const [selectedLevels, setSelectedLevels] = useState([]);
  const [filteredSpots, setFilteredSpots] = useState(Spots);
- const [createdPlans, setCreatedPlans] = useState([]);
  const [searchName, setSearchName] = useState('');
  const [isFilterOpen, setIsFilterOpen] = useState(false)
-
-useEffect(() => {
-  const loadPlans = () => {
-    const saved = localStorage.getItem('createdPlans');
-    if (saved) {
-      setCreatedPlans(JSON.parse(saved));
-    }
-  };
-
-  loadPlans(); // 初回読み込み
-
-  window.addEventListener('plansUpdated', loadPlans);
-  return () => window.removeEventListener('plansUpdated', loadPlans);
-}, []);
+ const { createdPlans } = useCreatedPlans();
+ const navigate = useNavigate();
 
  useEffect(() => {
   const message = localStorage.getItem('toastMessage');
@@ -66,36 +56,27 @@ useEffect(() => {
  const onChange = (e) => {
   setSelectedArea(e.target.value)}
 
- const handleAddToMemo = (spot) => {
-  const saved = localStorage.getItem('Plan');
-  const current = saved ? JSON.parse(saved) : [];
-
-  // 重複チェック
-  const isDuplicate = current.find(item => item.name === spot.name);
-  if (isDuplicate) {
-    alert('すでに追加済みです');
-    return;
-  }
-  current.push(spot);
-  localStorage.setItem('Plan', JSON.stringify(current));
-
-  // カスタムイベントを発火して他コンポーネントに通知
-  window.dispatchEvent(new Event('planUpdated'));
-}
+  // お気に入り済みスポット
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem('Favorites')
+    return saved ? JSON.parse(saved) : [];
+  })
 
 const handleAddToFav = (spot) => {
-  const favSaved = localStorage.getItem('Favorites');
-  const currentFav = favSaved ? JSON.parse(favSaved) : [];
-
-  const isFavDuplicate = currentFav.find(item => item.name === spot.name);
+  // 重複確認
+  const isFavDuplicate = favorites.find(item => item.name === spot.name);
   if (isFavDuplicate) {
     alert('すでにお気に入り済みです');
     return;
   }
-  currentFav.push(spot);
-  localStorage.setItem('Favorites', JSON.stringify(currentFav));
 
-  // カスタムイベントを発火して他コンポーネントに通知
+  // 重複なければお気に入りに追加
+  const newFavorites = [...favorites, spot];
+  setFavorites(newFavorites);
+
+  localStorage.setItem('Favorites', JSON.stringify(newFavorites));
+
+  // カスタムイベントを発火してFavoritesコンポーネントに通知
   window.dispatchEvent(new Event('favoritesUpdated'));
 }
 
@@ -142,19 +123,17 @@ if(result){
           <div className={styles.mainTop}>
               <MapArea 
               filteredSpots={filteredSpots}
-              onAddToMemo={handleAddToMemo}
               onAddToFav={handleAddToFav}
               />
-            <div className={styles.planMemo}>
-              <h2 className={styles.planMemoTitle}>プランメモ</h2>
-              <PlanMemo />
+              <div className={styles.hidden}>
+                <SpotList />
+              </div>
             </div>
-          </div>
-
       <div className={styles.contentBelow}>
         <div className={styles.plan}>
           <div className={styles.planNav}>
             <h2 className={styles.planTitle}>作成したプラン</h2>
+            <nav className={styles.planAllBtn} onClick={() => navigate('/plan')}>すべて見る ＞</nav>
           </div>
           <div className={styles.planContent}>
             <PlanSection
@@ -169,8 +148,9 @@ if(result){
       </div>
       </div>
       </div>
-    </div>
+      </div>
     </main>
+      <BottomTab />
   </>
   )
 }

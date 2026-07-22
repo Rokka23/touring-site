@@ -109,3 +109,17 @@
     justify-content: start;
   }
 }
+
+@media (max-width:768px) {
+  .spotName {
+    font-size: 18px;
+  }
+
+  .spotTab {
+    font-size: 16px;
+  }
+
+  .detailContent {
+    margin-bottom: 60px;
+  }
+}

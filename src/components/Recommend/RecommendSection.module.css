@@ -78,6 +78,17 @@
   z-index: 10;
 }
 
+@media(max-width: 768px) {
+  .recommendCardTitle {
+    font-size: 14px;
+  }
+
+  .recommendCardPref,
+  .recommendCardDesc {
+    font-size: 12px;
+  }
+}
+
 :global(.recommend-prev) {
   left: 0;
 }

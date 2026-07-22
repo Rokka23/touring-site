@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import { IoTrashOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
+import { BottomTab } from "../../components/BottomTab/BottomTab";
 
 import styles from "./Favorites.module.css";
 
@@ -116,6 +117,7 @@ export const Favorites = () => {
           </button>
         </div>
       </main>
+      <BottomTab />
     </>
 
   )

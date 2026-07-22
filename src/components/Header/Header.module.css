@@ -155,9 +155,13 @@ header {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .headerInner {
+    padding-top: 10px;
+    row-gap: 10px;
+  }
   .headerFav {
-    padding: 10px 14px;
+    display: none;
   }
 
   .headerFav .favText {
@@ -173,11 +177,11 @@ header {
     padding-left: 0;
   }
 
-  .headerFilterBtn {
-    padding: 10px 14px;
-  }
-
   .headerFilterBtn .filterBtnText {
     display: none;
+  }
+
+  .planHeader {
+    padding: 0 0 0 10px;
   }
 }

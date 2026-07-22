@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./MapArea.module.css";
 
-export const MapArea = ({ filteredSpots, onAddToMemo, onAddToFav }) => {
+export const MapArea = ({ filteredSpots, onAddToFav }) => {
   const navigate = useNavigate();
 
   const containerStyle = {
@@ -37,6 +37,12 @@ export const MapArea = ({ filteredSpots, onAddToMemo, onAddToFav }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const favoriteSaved = JSON.parse(localStorage.getItem("Favorites")) || [];
+
+  const isFavorite = activeSpots && favoriteSaved.some(
+    (item) => item.name === activeSpots.name
+  );
+
   return (
     <div className={styles.mapWrapper}> 
       <LoadScript googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
@@ -60,13 +66,23 @@ export const MapArea = ({ filteredSpots, onAddToMemo, onAddToFav }) => {
           >
             <div className={styles.mapInfoWindow}>
               <h3 className={styles.iwTitle}>{activeSpots.name}</h3>
+              <div className={styles.iwMeta}>
+                <span>{activeSpots.prefecture}</span>
+                <span>・</span>
+                <span>{activeSpots.type}</span>
+              </div>
               <div className={styles.iwActions}>
-                <button className={`${styles.iwBtn} ${styles.iwBtnPrimary}`} onClick={() => {onAddToMemo(activeSpots)}}>
-                  プランメモに追加
-                </button>
-                <button className={`${styles.iwBtn} ${styles.iwBtnPrimary}`} onClick={() => {onAddToFav(activeSpots)}}>
-                  お気に入りに追加
-                </button>
+              <button
+                className={
+                  isFavorite
+                    ? `${styles.iwBtn} ${styles.iwBtnSuccess}`
+                    : `${styles.iwBtn} ${styles.iwBtnPrimary}`
+                }
+                onClick={() => onAddToFav(activeSpots)}
+                disabled={isFavorite}
+              >
+                {isFavorite ? "お気に入り追加済み" : "お気に入りに追加"}
+              </button>
                 <button className={`${styles.iwBtn} ${styles.iwBtnSecondary}`} onClick={() => navigate(`/detail/${activeSpots.name}`)}>
                   詳細を見る
                 </button>
