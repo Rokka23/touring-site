@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules"
 import { IoTrashOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { BottomTab } from "../../components/BottomTab/BottomTab";
+import { DeleteModal } from "../../components/Modal/DeleteModal";
 
 import styles from "./Favorites.module.css";
 
@@ -14,6 +15,7 @@ import styles from "./Favorites.module.css";
 export const Favorites = () => {
   const [favorites, setFavorites] = useState([])
   const navigate = useNavigate();
+  const [deleteSpot, setDeleteSpot] = useState(null)
 
   useEffect(() => {
       const loadPlan = () => {
@@ -29,10 +31,15 @@ export const Favorites = () => {
       return () => window.removeEventListener('favoritesUpdated', loadPlan);
     }, []);
 
-    const onDelete = (name) => {
+    const onDeleteIconClick = (name) => {
+      setDeleteSpot(name)
+    }
+
+    const handleDelete = (name) => {
       setFavorites(prev => {
         const updated = prev.filter(s => s.name !== name);
         localStorage.setItem('Favorites', JSON.stringify(updated));
+        setDeleteSpot(null);
         return updated;
       });
     }
@@ -97,7 +104,7 @@ export const Favorites = () => {
                           className={styles.deleteFavBtn}
                           onClick={(e) => {
                             e.stopPropagation();
-                            onDelete(fav.name);
+                            onDeleteIconClick(fav.name);
                           }}
                         >
                           <IoTrashOutline />
@@ -108,6 +115,15 @@ export const Favorites = () => {
                 )
               })}
             </Swiper>    
+
+            {deleteSpot && (
+              <DeleteModal 
+                title='お気に入り'
+                name={deleteSpot}
+                handleCancel={() => setDeleteSpot(null)}
+                handleDelete={() => handleDelete(deleteSpot)}
+              />
+            )}
 
           <button className={`${styles.favArrow} ${styles.favPrev} fav-prev`}>
             <IoChevronBack />
