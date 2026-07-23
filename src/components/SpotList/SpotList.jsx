@@ -45,6 +45,8 @@ const selectedCount = selectedSpots.length;
       name: planName.trim(),  
       spots: selectedSpots, 
       createdAt: new Date().toISOString(),
+      lat: selectedSpots.map((s) => s.lat),
+      lng: selectedSpots.map((s) => s.lng),
     }
 
     // 新しいプランを追加
