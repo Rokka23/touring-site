@@ -3,6 +3,13 @@
   height: 600px;
 }
 
+.spotLabel {
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none; 
+}
+
 /* マップ */
 .mapInfoWindow {
   max-width: 240px;
@@ -84,6 +91,7 @@
   transform: none;
   box-shadow: none;
 }
+
  
 
 @media (max-width: 768px) {

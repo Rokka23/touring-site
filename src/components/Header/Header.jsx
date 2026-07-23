@@ -1,4 +1,3 @@
-import { TbMotorbikeFilled } from "react-icons/tb";
 import { FaHeart } from "react-icons/fa";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2"; 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -18,9 +17,16 @@ export const Header = ({ searchName, setSearchName, onSearchByName, isFilterOpen
     <header>
   <div className={`${styles.headerInner} ${isPlan || isFavorites  ? styles.planHeader : ''} `}>
     <div className={styles.logo}>
-      <h1 className={styles.title}>ツーリングスポットナビ</h1>
       <div className={styles.titleIcon}>
-        <TbMotorbikeFilled />
+        <img 
+          src="/public/logo2.png"
+          alt="ロゴの画像"
+          width={130}
+          height={70}
+        />
+      </div>
+      <div className={styles.titleTextBox}>
+        <h1 className={styles.title}>ROKKA BIKE</h1>
       </div>
     </div>
     <div className={`${styles.searchArea} ${isFavorites ? styles.headerFavBtnHide : ""} ${isPlan ? styles.headerFavBtnHide : ""}`}>

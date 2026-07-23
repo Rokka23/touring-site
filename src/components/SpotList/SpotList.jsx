@@ -112,7 +112,6 @@ const selectedCount = selectedSpots.length;
       </div>
       <div className={styles.filterActions}>
         <button className={styles.createPlanBtn} onClick={handleCreatePlan}>プランを作成する</button>
-        <p className={styles.memoInfo}>※プラスボタンをクリックすると選択できます。</p>
       </div>
 
       {isFormOpen && (
