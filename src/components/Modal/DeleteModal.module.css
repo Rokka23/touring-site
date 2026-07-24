@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: auto;
+  width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -65,4 +65,10 @@
 
 .modalDeleteBtn:hover {
   opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .modalOverlay {
+    width: auto;
+  }
 }
