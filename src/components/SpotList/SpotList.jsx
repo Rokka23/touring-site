@@ -1,6 +1,6 @@
 import { Spots } from "../../data/spots";
-import { useCreatedPlans } from "../../contexts/CreatedPlans/useCreatedPlans";
-import { usePlanSelection } from "../../contexts/PlanSelection/usePlanSelection";
+import { useCreatedPlans } from "../../contexts/CreatedPlansContext/useCreatedPlans";
+import { useSelectedSpots } from "../../contexts/SelectedSpotsContext/useSelectedSpotsContext";
 import { useState } from "react";
 import { CiCirclePlus } from "react-icons/ci";
 import { FaMinusSquare } from "react-icons/fa";
@@ -13,7 +13,7 @@ const [isFormOpen, setIsFormOpen] = useState(false);
 const [planName, setPlanName] = useState('');
 const [errormessage, setErrormessage] = useState('')
 const { addPlan } = useCreatedPlans();
-const { selectedSpots, addSpot, removeSpot, clearSpot } = usePlanSelection();
+const { selectedSpots, addSpot, removeSpot, clearSpot } = useSelectedSpots();
 const selectedCount = selectedSpots.length;
 
   // プラン作成ボタン押下

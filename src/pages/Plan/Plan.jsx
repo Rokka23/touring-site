@@ -2,8 +2,8 @@ import { Header } from "../../components/Header/Header"
 import { BottomTab } from "../../components/BottomTab/BottomTab"
 import { useState } from "react"
 import { SpotList } from "../../components/SpotList/SpotList";
-import { PlanSection } from "../../components/PlanSection";
-import { useCreatedPlans } from "../../contexts/CreatedPlans/useCreatedPlans";
+import { CreatedPlanList } from "../../components/CreatedPlanList/CreatedPlanList";
+import { useCreatedPlans } from "../../contexts/CreatedPlansContext/useCreatedPlans";
 
 import styles from "./Plan.module.css";
 
@@ -31,7 +31,7 @@ export const Plan = () => {
         </div>
 
         <div>
-          {isActiveTab === 'spots' ?   <SpotList />  : <div className={styles.planBox}><PlanSection plans={createdPlans}/></div>}
+          {isActiveTab === 'spots' ?   <SpotList />  : <div className={styles.planBox}><CreatedPlanList plans={createdPlans}/></div>}
         </div>
       </main>
       <BottomTab />

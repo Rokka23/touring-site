@@ -1,7 +1,7 @@
-import styles from "./PlanSection.module.css";
-import { navigateUrl } from "../utils/navigateUrl";
+import styles from "./CreatedPlanList.module.css";
+import { navigateUrl} from "../../utils/navigateUrl"
 
-export const PlanSection = ({ plans }) => {
+export const CreatedPlanList = ({ plans }) => {
 const handleNavigate = (id) => {
 const targetPlan = plans.find((plan) => plan.id === id);
 const spotsData = targetPlan.spots.map((spot) => [spot.lat, spot.lng]);

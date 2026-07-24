@@ -56,7 +56,7 @@ export const Favorites = () => {
           <h1 className={styles.favTitle}>お気に入り</h1>
         </div>
         <div className={styles.favInner}>
-          <button className="back-btn" onClick={() => navigate('/')}>← ホーム画面に戻る</button>
+          <button className={styles.backBtn} onClick={() => navigate('/')}>← ホーム画面に戻る</button>
             <Swiper
               modules={[Navigation]}
               navigation={{
