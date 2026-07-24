@@ -1,6 +1,5 @@
 import styles from "./CreatedPlanList.module.css";
 import { navigateUrl} from "../../utils/navigateUrl"
-import { IoIosNavigate } from "react-icons/io";
 
 export const CreatedPlanList = ({ plans }) => {
 const handleNavigate = (id) => {
