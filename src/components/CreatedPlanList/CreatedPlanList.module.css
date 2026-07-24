@@ -18,6 +18,12 @@
   color: #25619d;
 }
 
+.planListIcon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .spotNumberList {
   list-style: none;   /* デフォルトの数字を消して、自前の連番に置き換える */
   padding: 0;
@@ -38,6 +44,11 @@
   margin-right: 4px;
 }
 
+.navIcon {
+  /* display: inline-block; */
+  width: 30px;
+  height: 30px;
+}
 @media (max-width: 768px) {
   .planBox h3 {
     font-size: 14px;
