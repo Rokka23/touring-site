@@ -14,6 +14,7 @@ window.open(url, "_blank");
       {plans.map((plan, planIndex) => (
         <div key={planIndex} className={styles.planBox}>
           <h3>{plan.name}</h3>
+          <div className={styles.planListIcon}>
           <ol className={styles.spotNumberList}>
             {plan.spots.map((spot, spotIndex) => (
               <li key={spot.name ?? spotIndex} className={styles.spotNumberItem}>
@@ -21,7 +22,15 @@ window.open(url, "_blank");
               </li>
             ))}
           </ol>
-          <button onClick={() => handleNavigate(plan.id)}>ナビ開始</button>
+          <img 
+            src="/navi-icon.png"
+            alt="ナビのアイコン画像"
+            width={30}
+            height={30}
+            onClick={() => handleNavigate(plan.id)} 
+            className={styles.navIcon} 
+          />
+          </div>
         </div>
       ))}
     </div>

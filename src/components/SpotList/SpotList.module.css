@@ -282,6 +282,7 @@
 @media (max-width: 1024px) {
   .planMemo {
     width: 300px;
+    margin-bottom: 20px;
   }
 
   .planMemoContainer {
