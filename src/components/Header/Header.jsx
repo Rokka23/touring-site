@@ -19,7 +19,7 @@ export const Header = ({ searchName, setSearchName, onSearchByName, isFilterOpen
     <div className={styles.logo}>
       <div className={styles.titleIcon}>
         <img 
-          src="/public/logo2.png"
+          src="/logo2.png"
           alt="ロゴの画像"
           width={130}
           height={70}
