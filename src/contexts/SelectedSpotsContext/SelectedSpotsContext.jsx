@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 
-export const PlanSelectionContext = createContext();
+export const SelectedSpotsContext = createContext();
 
-export function PlanSelectionProvider({ children }) {
+export function SelectedSpotsProvider({ children }) {
   // 選択中のスポット状態を保持
   const [selectedSpots, setSelectedSpots] = useState([]);
 
@@ -29,7 +29,7 @@ export function PlanSelectionProvider({ children }) {
   };
 
 return (
-  <PlanSelectionContext.Provider
+  <SelectedSpotsContext.Provider
     value={{
       selectedSpots,
       setSelectedSpots,
@@ -39,7 +39,7 @@ return (
     }}
   >
     {children}
-  </PlanSelectionContext.Provider>
+  </SelectedSpotsContext.Provider>
 )
 };
 

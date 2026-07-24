@@ -5,11 +5,11 @@ import { filterSpots } from '../../utils/filterSpots'
 import { Header } from "../../components/Header/Header";
 import { FilterPanel } from '../../components/FilterPanel/FilterPanel'
 import { MapArea } from '../../components/MapArea/MapArea'
-import { PlanSection } from '../../components/PlanSection'
+import { CreatedPlanList } from '../../components/CreatedPlanList/CreatedPlanList';
 import { SpotList } from "../../components/SpotList/SpotList";
 import { RecommendSection } from "../../components/Recommend/RecommendSection";
 import { BottomTab } from '../../components/BottomTab/BottomTab';
-import { useCreatedPlans } from '../../contexts/CreatedPlans/useCreatedPlans';
+import { useCreatedPlans } from '../../contexts/CreatedPlansContext/useCreatedPlans';
 
 import styles from "./HomePage.module.css";
 
@@ -102,7 +102,7 @@ if(result){
         onToggleFilter={() => setIsFilterOpen((prev) => !prev)}
       />
       <main>
-        <div className="main-inner">
+        <div className={styles.mainInner}>
           <div className={styles.mainBox}>
             <div id="toast" className={styles.toast}></div>
               <div className={styles.mainTop}>
@@ -136,7 +136,7 @@ if(result){
                     <nav className={styles.planAllBtn} onClick={() => navigate('/plan')}>すべて見る ＞</nav>
                   </div>
                   <div className={styles.planContent}>
-                    <PlanSection
+                    <CreatedPlanList
                       plans={createdPlans}
                     />
                   </div>

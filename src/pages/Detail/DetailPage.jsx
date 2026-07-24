@@ -18,8 +18,8 @@ export const DetailPage = () => {
       <Header />
 
       <main>
-        <div className="main-inner">
-          <button className="back-btn" onClick={() => navigate('/')}>← ホーム画面に戻る</button>
+        <div className={styles.mainInner}>
+          <button className={styles.backBtn} onClick={() => navigate('/')}>← ホーム画面に戻る</button>
           <div className={styles.detailContent}>
           <img
             src={spot.image}

@@ -13,7 +13,9 @@ export function CreatedPlansProvider ({ children }) {
   }, [createdPlans])
 
   const addPlan = (plan) => {
+    console.log(plan)
     setCreatedPlans((prev) => [...prev, plan]);
+    console.log(createdPlans)
   }
 
   return (

@@ -1,4 +1,26 @@
-/* 詳細画面 */
+.mainInner {
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #25619d;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: clamp(12px, 2.5vw, 16px); 
+}
+
+.backBtn:hover {
+  color: #154172;
+  text-decoration: underline;
+}
 
 .detailContent {
   display: flex;
@@ -111,6 +133,10 @@
 }
 
 @media (max-width:768px) {
+  .backBtn {
+    display: none;
+  }
+
   .spotName {
     font-size: 18px;
   }
