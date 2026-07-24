@@ -27,7 +27,6 @@ export const DetailPage = () => {
             className={styles.spotImg}
           />
             <div className={styles.detailDescription}>
-              <span className={styles.titleTab}>スポット</span>
               <h2 className={styles.spotName}>{name}</h2>
               <h3 className={styles.spotTab}>概要</h3>
               <p className={styles.spotText}>{spot.description}</p>
